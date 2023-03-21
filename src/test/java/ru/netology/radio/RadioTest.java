@@ -7,6 +7,7 @@ public class RadioTest {
 
 
     // 1) Тест на установку текущей радиостанции в пределах допустимого диапазона:
+
     @Test
     public void shouldSetCurrentStationValidRange() {
         Radio radio = new Radio();
@@ -19,6 +20,7 @@ public class RadioTest {
     }
 
     // 2) Тест на установку текущей радиостанции за пределами допустимого диапазона (больше 9):
+
     @Test
     public void shouldSetCurrentStationInvalidRangeIncrease() {
         Radio radio = new Radio();
@@ -31,6 +33,7 @@ public class RadioTest {
     }
 
     // 3) Тест на установку текущей радиостанции за пределами допустимого диапазона (меньше 0):
+
     @Test
     public void shouldSetCurrentStationInvalidRangeDecrease() {
         Radio radio = new Radio();
