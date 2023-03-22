@@ -106,11 +106,11 @@ public class RadioTest {
     @Test
     public void shouldIncreaseVolumeWithinValidRange() {
         Radio radio = new Radio();
-        radio.currentVolume = 50;
+        radio.setCurrentVolume(50);
         radio.increaseVolume();
 
         int expected = 51;
-        int actual = radio.currentVolume;
+        int actual = radio.getCurrentVolume();
 
         Assertions.assertEquals(expected, actual);
     }
@@ -120,11 +120,11 @@ public class RadioTest {
     @Test
     public void shouldIncreaseVolumeAboveValidRange() {
         Radio radio = new Radio();
-        radio.currentVolume = 100;
+        radio.setCurrentVolume(100);
         radio.increaseVolume();
 
         int expected = 100;
-        int actual = radio.currentVolume;
+        int actual = radio.getCurrentVolume();
 
         Assertions.assertEquals(expected, actual);
     }
@@ -134,11 +134,11 @@ public class RadioTest {
     @Test
     public void shouldDecreaseVolumeWithinValidRange() {
         Radio radio = new Radio();
-        radio.currentVolume = 50;
+        radio.setCurrentVolume(50);
         radio.decreaseVolume();
 
         int expected = 49;
-        int actual = radio.currentVolume;
+        int actual = radio.getCurrentVolume();
 
         Assertions.assertEquals(expected, actual);
     }
@@ -148,11 +148,11 @@ public class RadioTest {
     @Test
     public void shouldDecreaseVolumeBelowValidRange() {
         Radio radio = new Radio();
-        radio.currentVolume = 0;
+        radio.setCurrentVolume(0);
         radio.decreaseVolume();
 
         int expected = 0;
-        int actual = radio.currentVolume;
+        int actual = radio.getCurrentVolume();
 
         Assertions.assertEquals(expected, actual);
     }
