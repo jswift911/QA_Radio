@@ -10,7 +10,7 @@ public class RadioTest {
 
     @Test
     public void shouldSetCurrentStationValidRange() {
-        Radio radio = new Radio();
+        Radio radio = new Radio(30);
         radio.setCurrentStation(5);
 
         int expected = 5;
@@ -23,8 +23,8 @@ public class RadioTest {
 
     @Test
     public void shouldSetCurrentStationInvalidRangeIncrease() {
-        Radio radio = new Radio();
-        radio.setCurrentStation(10);
+        Radio radio = new Radio(30);
+        radio.setCurrentStation(30);
 
         int expected = 0;
         int actual = radio.getCurrentStation();
@@ -36,10 +36,10 @@ public class RadioTest {
 
     @Test
     public void shouldSetCurrentStationInvalidRangeDecrease() {
-        Radio radio = new Radio();
+        Radio radio = new Radio(30);
         radio.setCurrentStation(-1);
 
-        int expected = 9;
+        int expected = 29;
         int actual = radio.getCurrentStation();
 
         Assertions.assertEquals(expected, actual);
@@ -49,7 +49,7 @@ public class RadioTest {
 
     @Test
     public void shouldNextValidRange() {
-        Radio radio = new Radio();
+        Radio radio = new Radio(25);
         radio.setCurrentStation(4);
         radio.next();
 
@@ -63,8 +63,8 @@ public class RadioTest {
 
     @Test
     public void shouldNextAboveValidRange() {
-        Radio radio = new Radio();
-        radio.setCurrentStation(9);
+        Radio radio = new Radio(30);
+        radio.setCurrentStation(29);
         radio.next();
 
         int expected = 0;
@@ -77,11 +77,11 @@ public class RadioTest {
 
     @Test
     public void shouldPrevWithinValidRange() {
-        Radio radio = new Radio();
-        radio.setCurrentStation(5);
+        Radio radio = new Radio(20);
+        radio.setCurrentStation(15);
         radio.prev();
 
-        int expected = 4;
+        int expected = 14;
         int actual = radio.getCurrentStation();
 
         Assertions.assertEquals(expected, actual);
@@ -91,11 +91,11 @@ public class RadioTest {
 
     @Test
     public void shouldPrevBelowValidRange() {
-        Radio radio = new Radio();
+        Radio radio = new Radio(20);
         radio.setCurrentStation(0);
         radio.prev();
 
-        int expected = 9;
+        int expected = 19;
         int actual = radio.getCurrentStation();
 
         Assertions.assertEquals(expected, actual);
@@ -105,7 +105,7 @@ public class RadioTest {
 
     @Test
     public void shouldIncreaseVolumeWithinValidRange() {
-        Radio radio = new Radio();
+        Radio radio = new Radio(20);
         radio.setCurrentVolume(50);
         radio.increaseVolume();
 
@@ -119,7 +119,7 @@ public class RadioTest {
 
     @Test
     public void shouldIncreaseVolumeAboveValidRange() {
-        Radio radio = new Radio();
+        Radio radio = new Radio(20);
         radio.setCurrentVolume(100);
         radio.increaseVolume();
 
@@ -133,7 +133,7 @@ public class RadioTest {
 
     @Test
     public void shouldDecreaseVolumeWithinValidRange() {
-        Radio radio = new Radio();
+        Radio radio = new Radio(20);
         radio.setCurrentVolume(50);
         radio.decreaseVolume();
 
@@ -147,12 +147,48 @@ public class RadioTest {
 
     @Test
     public void shouldDecreaseVolumeBelowValidRange() {
-        Radio radio = new Radio();
+        Radio radio = new Radio(20);
         radio.setCurrentVolume(0);
         radio.decreaseVolume();
 
         int expected = 0;
         int actual = radio.getCurrentVolume();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    // 12) Тест на инициализацию количества станций через конструктор:
+
+    @Test
+    public void shouldInitCountStationsWithConstructor() {
+        Radio radio = new Radio(20);
+
+        int expected = 20;
+        int actual = radio.getCountStations();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    // 13) Тест на максимульную станцию при инициализации через конструктор
+
+    @Test
+    public void shouldInitMaxStationWithConstructor() {
+        Radio radio = new Radio(15);
+
+        int expected = 14;
+        int actual = radio.getMaxStation();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    // 14) Тест на количество радиостанций по умолчанию
+
+    @Test
+    public void shouldDefaultStations() {
+        Radio radio = new Radio();
+
+        int expected = 10;
+        int actual = radio.getCountStations();
 
         Assertions.assertEquals(expected, actual);
     }
